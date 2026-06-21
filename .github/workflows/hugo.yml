@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     paths:
       - "Project-Website/**"
+      - ".github/workflows/hugo.yml"
   workflow_dispatch:
 
 permissions:
@@ -46,7 +47,7 @@ jobs:
             --gc \
             --minify \
             --source ./Project-Website \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
+            --baseURL "https://www.mirage-recon.com/"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
