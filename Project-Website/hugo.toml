@@ -1,0 +1,51 @@
+baseURL = "https://www.mirage-recon.com/"
+title = "FusionDB"
+disableKinds = ["taxonomy", "term"]
+
+[languages]
+  [languages.en]
+    locale = "en-US"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+  description = "A unified tri-modal embedded database engine for Go — KV, Graph, and Vector in one atomic write."
+  stripeLink = "https://buy.stripe.com/14A6oH87l8119bL0rf0kE04"
+  githubRelease = "https://github.com/Mirage-Recon-LLC/FusionDB-T1/releases/latest"
+  githubRepo = "https://github.com/Mirage-Recon-LLC/FusionDB-T1"
+  version = "1.0.0"
+  price = "$250"
+  company = "Mirage Recon LLC"
+  windowsInstaller = "https://github.com/Mirage-Recon-LLC/FusionDB-T1/releases/latest/download/fusiondb-installer.exe"
+  linuxBinary = "https://github.com/Mirage-Recon-LLC/FusionDB-T1/releases/latest/download/fusiondb-bootstrap-linux"
+  windowsBinary = "https://github.com/Mirage-Recon-LLC/FusionDB-T1/releases/latest/download/fusiondb.exe"
+
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "Features"
+  url = "/features/"
+  weight = 2
+
+[[menu.main]]
+  name = "Pricing"
+  url = "/pricing/"
+  weight = 3
+
+[[menu.main]]
+  name = "Docs"
+  url = "/docs/"
+  weight = 4
+
+[[menu.main]]
+  name = "Buy Now — $250"
+  url = "/pricing/"
+  weight = 10
+  [menu.main.params]
+    class = "nav-cta"

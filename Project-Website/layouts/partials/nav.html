@@ -1,0 +1,16 @@
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="FusionDB Home">
+      <img src="/images/LOGO.png" alt="FusionDB Logo">
+      <span class="nav-logo-text">Fusion<span>DB</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    <ul class="nav-links" role="list">
+      {{ range .Site.Menus.main }}
+      <li>
+        <a href="{{ .URL }}"{{ with .Params.class }} class="{{ . }}"{{ end }}>{{ .Name }}</a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,125 @@
+{{ define "main" }}
+
+<!-- ── Page Header ───────────────────────────────────────── -->
+<section style="padding:4rem 0 2rem;border-bottom:1px solid var(--border-subtle);">
+  <div class="container">
+    <div class="section-label">Licensing</div>
+    <h1 class="section-title">Simple Pricing</h1>
+    <p class="section-subtitle">
+      One license. One binary. Everything included — no subscriptions, no per-seat fees, no cloud lock-in.
+    </p>
+  </div>
+</section>
+
+<!-- ── Pricing Card ──────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="pricing-wrap">
+      <div style="position:relative;">
+        <div class="pricing-card-glow"></div>
+        <div class="pricing-card">
+          <div class="pricing-badge">Single License — Perpetual</div>
+
+          <div class="pricing-price">$250</div>
+          <div class="pricing-period">One-Time Payment &nbsp;·&nbsp; Instant Download</div>
+
+          <ul class="pricing-feats">
+            <li><span class="chk">✓</span> FusionDB v{{ .Site.Params.version }} — full engine</li>
+            <li><span class="chk">✓</span> Windows installer (<code>fusiondb-installer.exe</code>)</li>
+            <li><span class="chk">✓</span> Linux binary (<code>fusiondb-bootstrap-linux</code>)</li>
+            <li><span class="chk">✓</span> KV Store with AES-256-GCM encryption</li>
+            <li><span class="chk">✓</span> Semantic Graph Store — 4-Degree Ontology</li>
+            <li><span class="chk">✓</span> HNSW Vector Index — cosine similarity</li>
+            <li><span class="chk">✓</span> Unified Fusion Language (UFL)</li>
+            <li><span class="chk">✓</span> Bayesian hybrid scoring engine</li>
+            <li><span class="chk">✓</span> Multi-format seeder (JSON, Markdown, Excel)</li>
+            <li><span class="chk">✓</span> HTTP observability (<code>/healthz</code>, <code>/readyz</code>)</li>
+            <li><span class="chk">✓</span> Go library + CLI tool</li>
+            <li><span class="chk">✓</span> Full source access on GitHub</li>
+            <li><span class="chk">✓</span> Complete documentation suite</li>
+          </ul>
+
+          <a href="{{ .Site.Params.stripeLink }}" class="btn btn-primary btn-xl" style="width:100%;justify-content:center;" target="_blank" rel="noopener">
+            Secure Checkout — $250
+          </a>
+
+          <div class="pricing-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Secured by Stripe &nbsp;·&nbsp; Instant access after payment
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line" style="margin:0;"></div>
+
+<!-- ── What Happens After Purchase ───────────────────────── -->
+<section class="section-sm">
+  <div class="container">
+    <div class="text-center mb-4">
+      <div class="section-label" style="justify-content:center;">Purchase Flow</div>
+      <h2 class="section-title">How It Works</h2>
+    </div>
+    <div class="grid-3">
+      <div class="card text-center">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">💳</div>
+        <div class="card-title">1 · Checkout</div>
+        <p class="card-text">Click the button above. You'll be taken to a secure Stripe-hosted checkout. Pay with any major card — the entire flow is encrypted and PCI-compliant.</p>
+      </div>
+      <div class="card text-center">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">✅</div>
+        <div class="card-title">2 · Confirmation</div>
+        <p class="card-text">After payment succeeds, Stripe redirects you directly to the download page. You get immediate access — no waiting, no email confirmation required to download.</p>
+      </div>
+      <div class="card text-center">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">⬇️</div>
+        <div class="card-title">3 · Download</div>
+        <p class="card-text">Download the Windows installer or Linux binary directly from GitHub Releases. Both are self-contained — no runtime dependencies beyond a 32-byte secret key.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line" style="margin:0;"></div>
+
+<!-- ── FAQ ───────────────────────────────────────────────── -->
+<section class="section-sm">
+  <div class="container" style="max-width:760px;">
+    <div class="section-label">Questions</div>
+    <h2 class="section-title mb-4">FAQ</h2>
+
+    <div class="card mb-2">
+      <div class="card-title text-c">Is this a perpetual license?</div>
+      <p class="card-text">Yes. One payment of $250 grants you a perpetual single-entity license to use FusionDB v1.0.0. There are no recurring fees, seats, or usage limits.</p>
+    </div>
+    <div class="card mb-2">
+      <div class="card-title text-c">Can I use FusionDB in a commercial product?</div>
+      <p class="card-text">The license covers a single entity (individual or organization). Contact <a href="mailto:contact@mirage-recon.com">contact@mirage-recon.com</a> for multi-entity or OEM licensing.</p>
+    </div>
+    <div class="card mb-2">
+      <div class="card-title text-c">What payment methods are accepted?</div>
+      <p class="card-text">All major credit and debit cards are accepted via Stripe. Stripe handles all payment processing — Mirage Recon LLC never sees your card details.</p>
+    </div>
+    <div class="card">
+      <div class="card-title text-c">What if I lose access to the download page?</div>
+      <p class="card-text">All release binaries are permanently available on the <a href="{{ .Site.Params.githubRelease }}" target="_blank" rel="noopener">GitHub Releases page</a>. Your purchase gives you immediate and permanent access.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Veteran Badge ─────────────────────────────────────── -->
+<section class="section-sm">
+  <div class="container text-center">
+    <div style="display:inline-flex;align-items:center;gap:1.5rem;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:1.5rem 2.5rem;">
+      <img src="/images/veteran-owned.png" alt="Veteran Owned Business" style="height:56px;width:auto;opacity:0.9;">
+      <div style="text-align:left;">
+        <div style="font-family:var(--font-display);font-size:0.9rem;font-weight:700;color:var(--text-bright);letter-spacing:0.08em;">Veteran Owned Business</div>
+        <div style="font-size:0.85rem;color:var(--text-muted);margin-top:3px;">Mirage Recon LLC — Built by veterans, for builders.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

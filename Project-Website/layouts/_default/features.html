@@ -1,0 +1,249 @@
+{{ define "main" }}
+
+<!-- ── Page Header ───────────────────────────────────────── -->
+<section style="padding:4rem 0 2rem;border-bottom:1px solid var(--border-subtle);">
+  <div class="container">
+    <div class="section-label">Product</div>
+    <h1 class="section-title">Features</h1>
+    <p class="section-subtitle">
+      FusionDB packs three production-grade database engines into one binary, bound by a single atomic transaction layer and a unified query interface.
+    </p>
+  </div>
+</section>
+
+<!-- ── Storage Layers ────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Storage Layers</div>
+    <h2 class="section-title">Three Engines. One Write.</h2>
+
+    <div style="overflow-x:auto;margin-top:2rem;">
+      <table class="ftable">
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>Storage Format</th>
+            <th>Use Case</th>
+            <th>Key Prefix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag tag-c">KV Store</span></td>
+            <td>AES-256-GCM encrypted JSON documents</td>
+            <td>Fast point lookups, metadata, audit fields, entity payloads</td>
+            <td>0x10 – 0x12</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-p">Graph Store</span></td>
+            <td>Semantic triples (subject → predicate → object)</td>
+            <td>Relationship traversal, entity linking, ontology queries</td>
+            <td>0x00 – 0x01</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-g">Vector Store</span></td>
+            <td>Float32 embeddings via HNSW index</td>
+            <td>Similarity search, RAG retrieval, semantic ranking</td>
+            <td>0x02 – 0x04</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-3 mt-4">
+      <div class="card">
+        <div class="card-icon icon-c">🗄️</div>
+        <div class="tag-row"><span class="tag tag-c">KV Store</span></div>
+        <div class="card-title">Encrypted Key-Value</div>
+        <p class="card-text">Every KV payload is encrypted with AES-256-GCM before touching disk. A fresh random nonce is generated per write. Three byte-prefix-isolated data tiers maintain logical separation between verified, unverified, and knowledge data.</p>
+        <ul class="feat-list mt-3" style="grid-template-columns:1fr;">
+          <li>AES-256-GCM encryption at rest</li>
+          <li>Ristretto LRU in-process cache (128 MB default)</li>
+          <li>ScanFilterStream for streaming reads</li>
+          <li>Salience / reliability / decay envelope</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-p">🕸️</div>
+        <div class="tag-row"><span class="tag tag-p">Graph Store</span></div>
+        <div class="card-title">Semantic Graph</div>
+        <p class="card-text">Bidirectional quad store with length-prefixed key format. Forward edges at prefix 0x00, reverse at 0x01. Degree-2 (PII) edges are HMAC-SHA256 masked — the original value is stored in a separate encrypted reverse-lookup record.</p>
+        <ul class="feat-list mt-3" style="grid-template-columns:1fr;">
+          <li>Bidirectional edge indexing</li>
+          <li>HMAC-SHA256 PII masking on Degree-2 edges</li>
+          <li>4-Degree ontology (Primary → Quaternary)</li>
+          <li>HydrateEntity() full relationship resolution</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-g">🧠</div>
+        <div class="tag-row"><span class="tag tag-g">Vector Store</span></div>
+        <div class="card-title">HNSW Vector Index</div>
+        <p class="card-text">Hierarchical Navigable Small World (HNSW) approximate nearest-neighbor index backed by BadgerDB. No separate vector service required. CometNode binary serialization with cosine-distance metric and configurable max neighbors.</p>
+        <ul class="feat-list mt-3" style="grid-template-columns:1fr;">
+          <li>HNSW ANN index (cosine distance)</li>
+          <li>Float32 embedding support</li>
+          <li>MaxNeighbors = 16 (configurable)</li>
+          <li>Vector similarity via UFL <code>$near</code> selector</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line" style="margin:0;"></div>
+
+<!-- ── Security ──────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2" style="align-items:center;gap:4rem;">
+      <div>
+        <div class="section-label">Security</div>
+        <h2 class="section-title">Zero-Trust Data Model</h2>
+        <p style="font-size:1rem;color:var(--text-secondary);line-height:1.8;margin-bottom:1.5rem;">
+          FusionDB derives two independent keys from your master secret — one for encryption, one for PII salting. The raw secret never enters the database. Degree-2 PII identifiers are one-way hashed before indexing.
+        </p>
+        <ul class="feat-list" style="grid-template-columns:1fr;">
+          <li>AES-256-GCM encryption for all KV payloads</li>
+          <li>HMAC-SHA256 key derivation with domain separation</li>
+          <li>HMAC-SHA256 PII masking (emails, phones, IDs)</li>
+          <li>Encrypted reverse-lookup for PII decryption</li>
+          <li>FUSIONDB_SECRET environment variable — never on disk</li>
+          <li>Startup validation: exit on insufficient key entropy</li>
+          <li>Circuit breaker — halts after 3 sequential failures</li>
+          <li>Session sync guard — prevents cross-session operations</li>
+        </ul>
+        <div class="mt-4">
+          <a href="{{ .Site.Params.githubRepo }}/blob/main/docs/SECURITY.md" class="btn btn-outline" target="_blank" rel="noopener">Read Security Guide →</a>
+        </div>
+      </div>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="t-dot t-red"></span>
+          <span class="t-dot t-yellow"></span>
+          <span class="t-dot t-green-d"></span>
+          <span class="terminal-label">key derivation</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-comment">// Two independent keys from one master secret</span></div>
+          <div><span class="t-key">secretKey</span> <span class="t-cmd">= HMAC-SHA256(master, "fusiondb-secret-v1")</span></div>
+          <div><span class="t-key">saltKey</span> &nbsp;&nbsp;<span class="t-cmd">= HMAC-SHA256(master, "fusiondb-salt-v1")</span></div>
+          <div>&nbsp;</div>
+          <div><span class="t-comment">// KV write: AES-256-GCM + fresh nonce</span></div>
+          <div><span class="t-key">nonce</span>  <span class="t-cmd">= crypto/rand (12 bytes)</span></div>
+          <div><span class="t-key">cipher</span> <span class="t-cmd">= AES-256-GCM(secretKey, nonce, payload)</span></div>
+          <div>&nbsp;</div>
+          <div><span class="t-comment">// PII graph edge: one-way hash</span></div>
+          <div><span class="t-key">masked</span> <span class="t-cmd">= HMAC-SHA256(saltKey, "jane@corp.com")</span></div>
+          <div><span class="t-out">→ stored in graph, original encrypted separately</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line" style="margin:0;"></div>
+
+<!-- ── UFL Language ──────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Developer Interface</div>
+    <h2 class="section-title">Unified Fusion Language</h2>
+    <p class="section-subtitle mb-4">
+      UFL is a JSON-based declarative interface for all reads and writes. One manifest format handles entity fusion, vector queries, and graph traversal.
+    </p>
+    <div class="grid-2" style="align-items:start;">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="t-dot t-red"></span>
+          <span class="t-dot t-yellow"></span>
+          <span class="t-dot t-green-d"></span>
+          <span class="terminal-label">manifest.json — write</span>
+        </div>
+        <div class="terminal-body" style="font-size:0.78rem;">
+<pre style="color:var(--text-secondary);margin:0;">{
+  <span class="t-key">"ufl_version"</span>: <span class="t-out">"1.0"</span>,
+  <span class="t-key">"action"</span>: <span class="t-out">"fuse"</span>,
+  <span class="t-key">"entity"</span>: {
+    <span class="t-key">"id"</span>: <span class="t-out">"person:jane_smith"</span>,
+    <span class="t-key">"type"</span>: <span class="t-out">"Person"</span>,
+    <span class="t-key">"tier"</span>: <span class="t-out">"verified"</span>,
+    <span class="t-key">"vector"</span>: [<span class="t-out">0.12, -0.05, 0.88, 0.34</span>],
+    <span class="t-key">"kv"</span>: { <span class="t-key">"name"</span>: <span class="t-out">"Jane Smith"</span> },
+    <span class="t-key">"relations"</span>: {
+      <span class="t-key">"secondary"</span>: [
+        { <span class="t-key">"predicate"</span>: <span class="t-out">"has_email"</span>,
+          <span class="t-key">"object"</span>: <span class="t-out">"jane@corp.com"</span> }
+      ]
+    }
+  }
+}</pre>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-3">
+          <div class="card-title text-c">Fuse Actions</div>
+          <p class="card-text">Write entities atomically across all three layers. Supports JSON manifests, Markdown (YAML frontmatter), and Excel files for bulk ingestion.</p>
+        </div>
+        <div class="card mb-3">
+          <div class="card-title text-g">Query Selectors</div>
+          <p class="card-text">Query by entity ID with <code>selector.id</code>, or by vector similarity with <code>selector.vector.$near</code>. Hydration options control relationship depth (1–4 degrees).</p>
+        </div>
+        <div class="card">
+          <div class="card-title text-p">Bulk Seeding</div>
+          <p class="card-text">The <code>seed</code> CLI command recursively ingests a directory of JSON, Markdown, and Excel files. Batch commits at 100 entities prevent transaction overflow.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line" style="margin:0;"></div>
+
+<!-- ── CLI & Observability ────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Developer Tools</div>
+    <h2 class="section-title">CLI &amp; Observability</h2>
+    <div class="grid-2 mt-4">
+      <div>
+        <h3 style="font-size:1rem;margin-bottom:1.25rem;color:var(--text-bright);">CLI Commands</h3>
+        <table class="ftable">
+          <thead><tr><th>Command</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>store</td><td>Single entity write via command-line flags</td></tr>
+            <tr><td>query</td><td>Forward graph index lookup by subject</td></tr>
+            <tr><td>ufl</td><td>Parse and fuse a UFL manifest JSON file</td></tr>
+            <tr><td>seed</td><td>Recursive directory ingestion (JSON, MD, XLSX)</td></tr>
+            <tr><td>serve</td><td>HTTP observability server with health endpoints</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3 style="font-size:1rem;margin-bottom:1.25rem;color:var(--text-bright);">Observability Endpoints</h3>
+        <div class="card mb-2">
+          <div class="card-title text-g">GET /healthz</div>
+          <p class="card-text">Liveness probe. Returns <code>200 ok</code> whenever the process is running.</p>
+        </div>
+        <div class="card">
+          <div class="card-title text-c">GET /readyz</div>
+          <p class="card-text">Readiness probe. Returns <code>200 ok</code> when the database LOCK file exists and disk usage is below 90%.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────── -->
+<section class="cta-band">
+  <div class="container">
+    <h2>Ready to Build?</h2>
+    <p>One license unlocks the full FusionDB engine — Windows installer, Linux binary, and Go library.</p>
+    <div class="cta-actions">
+      <a href="/pricing/" class="btn btn-primary btn-lg">Purchase — $250</a>
+      <a href="/docs/" class="btn btn-outline btn-lg">Read the Docs</a>
+    </div>
+  </div>
+</section>
+
+{{ end }}

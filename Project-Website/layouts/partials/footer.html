@@ -1,0 +1,59 @@
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <img src="/images/LOGO.png" alt="FusionDB">
+        <span class="footer-brand-name">FUSIONDB</span>
+      </div>
+      <p style="margin-top:1rem;font-size:0.8rem;color:var(--text-muted);max-width:240px;line-height:1.7;">
+        A unified tri-modal embedded database engine for Go — KV, Graph, and Vector in one atomic write.
+      </p>
+      <div class="veteran-strip" style="margin-top:1.5rem;">
+        <img src="/images/veteran-owned.png" alt="Veteran Owned Business">
+        <div>
+          <div class="veteran-text-title">Veteran Owned</div>
+          <div class="veteran-text-sub">Mirage Recon LLC</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Product</div>
+      <ul class="footer-links">
+        <li><a href="/features/">Features</a></li>
+        <li><a href="/pricing/">Pricing</a></li>
+        <li><a href="/download/">Download</a></li>
+        <li><a href="/docs/">Documentation</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <ul class="footer-links">
+        <li><a href="{{ .Site.Params.githubRepo }}" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="{{ .Site.Params.githubRepo }}/blob/main/docs/QUICKSTART.md" target="_blank" rel="noopener">Quick Start</a></li>
+        <li><a href="{{ .Site.Params.githubRepo }}/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a></li>
+        <li><a href="{{ .Site.Params.githubRepo }}/releases" target="_blank" rel="noopener">Releases</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <ul class="footer-links">
+        <li><a href="{{ .Site.Params.githubRepo }}/blob/main/LICENSE" target="_blank" rel="noopener">License</a></li>
+        <li><a href="{{ .Site.Params.githubRepo }}/blob/main/docs/SECURITY.md" target="_blank" rel="noopener">Security</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span class="footer-copy">
+      &copy; {{ now.Format "2006" }} {{ .Site.Params.company }}. All rights reserved.
+      &nbsp;|&nbsp; FusionDB v{{ .Site.Params.version }}
+    </span>
+    <div class="footer-legal">
+      <a href="{{ .Site.Params.githubRepo }}/blob/main/LICENSE" target="_blank" rel="noopener">Proprietary License</a>
+      <a href="{{ .Site.Params.githubRepo }}/blob/main/docs/SECURITY.md" target="_blank" rel="noopener">Security Policy</a>
+    </div>
+  </div>
+</footer>

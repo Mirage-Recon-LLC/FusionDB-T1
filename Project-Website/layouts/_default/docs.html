@@ -1,0 +1,156 @@
+{{ define "main" }}
+
+<!-- ── Page Header ───────────────────────────────────────── -->
+<section style="padding:4rem 0 2rem;border-bottom:1px solid var(--border-subtle);">
+  <div class="container">
+    <div class="section-label">Documentation</div>
+    <h1 class="section-title">FusionDB Docs</h1>
+    <p class="section-subtitle">
+      Complete documentation for FusionDB — architecture, API reference, CLI, UFL language, and security guide. All docs live in the GitHub repository.
+    </p>
+    <div class="mt-4">
+      <a href="{{ .Site.Params.githubRepo }}" class="btn btn-outline" target="_blank" rel="noopener">
+        View on GitHub →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Doc Links ─────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Guides</div>
+    <h2 class="section-title mb-4">All Documentation</h2>
+
+    <div class="docs-grid">
+      <a href="{{ .Site.Params.githubRepo }}/blob/main/docs/QUICKSTART.md" class="doc-link" target="_blank" rel="noopener">
+        <span class="doc-link-icon">🚀</span>
+        <div>
+          <div class="doc-link-title">Quick Start</div>
+          <div class="doc-link-desc">Install, configure, and run your first queries. Get FusionDB running in under 5 minutes.</div>
+        </div>
+      </a>
+
+      <a href="{{ .Site.Params.githubRepo }}/blob/main/docs/ARCHITECTURE.md" class="doc-link" target="_blank" rel="noopener">
+        <span class="doc-link-icon">🏗️</span>
+        <div>
+          <div class="doc-link-title">Architecture</div>
+          <div class="doc-link-desc">Storage design, key namespacing, HNSW internals, and the Bayesian scoring engine.</div>
+        </div>
+      </a>
+
+      <a href="{{ .Site.Params.githubRepo }}/blob/main/docs/UFL_REFERENCE.md" class="doc-link" target="_blank" rel="noopener">
+        <span class="doc-link-icon">📋</span>
+        <div>
+          <div class="doc-link-title">UFL Reference</div>
+          <div class="doc-link-desc">Complete Unified Fusion Language schema, all actions, selectors, and worked examples.</div>
+        </div>
+      </a>
+
+      <a href="{{ .Site.Params.githubRepo }}/blob/main/docs/CLI_REFERENCE.md" class="doc-link" target="_blank" rel="noopener">
+        <span class="doc-link-icon">⌨️</span>
+        <div>
+          <div class="doc-link-title">CLI Reference</div>
+          <div class="doc-link-desc">All CLI commands, flags, and usage examples for store, query, ufl, seed, and serve.</div>
+        </div>
+      </a>
+
+      <a href="{{ .Site.Params.githubRepo }}/blob/main/docs/API_REFERENCE.md" class="doc-link" target="_blank" rel="noopener">
+        <span class="doc-link-icon">📦</span>
+        <div>
+          <div class="doc-link-title">Go API Reference</div>
+          <div class="doc-link-desc">Full Go package documentation — Open, Fuse, UFLQuery, HybridQueryEngine, and all types.</div>
+        </div>
+      </a>
+
+      <a href="{{ .Site.Params.githubRepo }}/blob/main/docs/SECURITY.md" class="doc-link" target="_blank" rel="noopener">
+        <span class="doc-link-icon">🔐</span>
+        <div>
+          <div class="doc-link-title">Security Guide</div>
+          <div class="doc-link-desc">Encryption model, key derivation, PII masking, key management, and full threat model.</div>
+        </div>
+      </a>
+
+      <a href="{{ .Site.Params.githubRepo }}/blob/main/README.md" class="doc-link" target="_blank" rel="noopener">
+        <span class="doc-link-icon">📖</span>
+        <div>
+          <div class="doc-link-title">README</div>
+          <div class="doc-link-desc">Project overview, feature matrix, architecture diagram, installation, and quick start.</div>
+        </div>
+      </a>
+
+      <a href="{{ .Site.Params.githubRepo }}/blob/main/CHANGELOG.md" class="doc-link" target="_blank" rel="noopener">
+        <span class="doc-link-icon">📝</span>
+        <div>
+          <div class="doc-link-title">Changelog</div>
+          <div class="doc-link-desc">Complete list of features and changes in every FusionDB release, following Semantic Versioning.</div>
+        </div>
+      </a>
+
+      <a href="{{ .Site.Params.githubRepo }}/blob/main/UFL.md" class="doc-link" target="_blank" rel="noopener">
+        <span class="doc-link-icon">🌐</span>
+        <div>
+          <div class="doc-link-title">UFL Language Spec</div>
+          <div class="doc-link-desc">The complete UFL language specification and grammar.</div>
+        </div>
+      </a>
+
+      <a href="{{ .Site.Params.githubRepo }}/issues" class="doc-link" target="_blank" rel="noopener">
+        <span class="doc-link-icon">🐛</span>
+        <div>
+          <div class="doc-link-title">Issues &amp; Support</div>
+          <div class="doc-link-desc">Report bugs, request features, or ask questions on GitHub Issues.</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line" style="margin:0;"></div>
+
+<!-- ── Quick Reference ───────────────────────────────────── -->
+<section class="section-sm">
+  <div class="container">
+    <div class="section-label">Reference</div>
+    <h2 class="section-title mb-4">Data Tiers &amp; Ontology</h2>
+    <div class="grid-2" style="gap:2rem;align-items:start;">
+      <div>
+        <h3 style="font-family:var(--font-display);font-size:0.88rem;letter-spacing:0.08em;color:var(--text-bright);margin-bottom:1.25rem;">Data Tiers</h3>
+        <table class="ftable">
+          <thead><tr><th>Tier</th><th>Prefix</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>verified</td><td>0x10</td><td>Accountable, audited facts</td></tr>
+            <tr><td>unverified</td><td>0x11</td><td>Raw, unchecked discoveries</td></tr>
+            <tr><td>knowledge</td><td>0x12</td><td>Methods, heuristics, self-referential</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3 style="font-family:var(--font-display);font-size:0.88rem;letter-spacing:0.08em;color:var(--text-bright);margin-bottom:1.25rem;">4-Degree Ontology</h3>
+        <table class="ftable">
+          <thead><tr><th>Degree</th><th>Name</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Primary</td><td>Core entity anchor</td></tr>
+            <tr><td>2</td><td>Secondary</td><td>PII — emails, phones (HMAC-masked)</td></tr>
+            <tr><td>3</td><td>Tertiary</td><td>Assets — vehicles, properties</td></tr>
+            <tr><td>4</td><td>Quaternary</td><td>Loose refs — documents, mentions</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────── -->
+<section class="cta-band">
+  <div class="container">
+    <h2>Ready to Get Started?</h2>
+    <p>Purchase a license and download FusionDB. Up and running in minutes.</p>
+    <div class="cta-actions">
+      <a href="/pricing/" class="btn btn-primary btn-lg">Purchase — $250</a>
+      <a href="{{ .Site.Params.githubRepo }}/blob/main/docs/QUICKSTART.md" class="btn btn-outline btn-lg" target="_blank" rel="noopener">Quick Start Guide</a>
+    </div>
+  </div>
+</section>
+
+{{ end }}

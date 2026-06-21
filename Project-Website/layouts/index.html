@@ -1,0 +1,211 @@
+{{ define "main" }}
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          v{{ .Site.Params.version }} — Now Available
+        </div>
+
+        <h1 class="hero-title">FUSION<br>DB</h1>
+        <p class="hero-sub">KV &nbsp;+&nbsp; Graph &nbsp;+&nbsp; Vector &nbsp;—&nbsp; One Atomic Write</p>
+
+        <p class="hero-desc">
+          FusionDB fuses three storage layers — encrypted key-value, semantic graph, and HNSW vector — inside a single BadgerDB transaction. Every write succeeds completely or rolls back entirely. No partial state, ever.
+        </p>
+
+        <div class="hero-actions">
+          <a href="/pricing/" class="btn btn-primary btn-lg">Get FusionDB — $250</a>
+          <a href="/features/" class="btn btn-outline btn-lg">Explore Features</a>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-label">Encryption</div>
+            <div class="hero-stat-value c">AES-256-GCM</div>
+          </div>
+          <div>
+            <div class="hero-stat-label">Vector Index</div>
+            <div class="hero-stat-value g">HNSW ANN</div>
+          </div>
+          <div>
+            <div class="hero-stat-label">PII Protection</div>
+            <div class="hero-stat-value p">HMAC-SHA256</div>
+          </div>
+          <div>
+            <div class="hero-stat-label">Storage Engine</div>
+            <div class="hero-stat-value c">BadgerDB</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="slideshow-wrap">
+          <img src="/images/slide-2.jpg" class="slide active" alt="FusionDB Screenshot 1" loading="eager">
+          <img src="/images/slide-3.jpg" class="slide" alt="FusionDB Screenshot 2" loading="lazy">
+          <img src="/images/slide-4.jpg" class="slide" alt="FusionDB Screenshot 3" loading="lazy">
+          <img src="/images/slide-5.jpg" class="slide" alt="FusionDB Screenshot 4" loading="lazy">
+          <img src="/images/slide-6.jpg" class="slide" alt="FusionDB Screenshot 5" loading="lazy">
+          <img src="/images/slide-7.jpg" class="slide" alt="FusionDB Screenshot 6" loading="lazy">
+          <img src="/images/slide-8.jpg" class="slide" alt="FusionDB Screenshot 7" loading="lazy">
+          <img src="/images/slide-9.jpg" class="slide" alt="FusionDB Screenshot 8" loading="lazy">
+          <div class="slide-nav">
+            <button class="slide-dot active" aria-label="Slide 1"></button>
+            <button class="slide-dot" aria-label="Slide 2"></button>
+            <button class="slide-dot" aria-label="Slide 3"></button>
+            <button class="slide-dot" aria-label="Slide 4"></button>
+            <button class="slide-dot" aria-label="Slide 5"></button>
+            <button class="slide-dot" aria-label="Slide 6"></button>
+            <button class="slide-dot" aria-label="Slide 7"></button>
+            <button class="slide-dot" aria-label="Slide 8"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ARCHITECTURE ──────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Architecture</div>
+    <h2 class="section-title">Three Layers. One Transaction.</h2>
+    <p class="section-subtitle mb-4">
+      Every <code>Fuse()</code> call writes across all three storage layers in a single atomic BadgerDB transaction. A failure in any layer rolls all three back — guaranteed.
+    </p>
+
+    <div class="arch-visual">
+      <div class="arch-layer">
+        <div class="arch-layer-icon">🗄️</div>
+        <div class="arch-layer-name text-c">KV Store</div>
+        <div class="arch-layer-desc">Encrypted JSON documents with AES-256-GCM. Fast point lookups, metadata, and audit fields.</div>
+        <div class="arch-prefix">Prefix: 0x10 – 0x12</div>
+      </div>
+      <div class="arch-layer">
+        <div class="arch-layer-icon">🕸️</div>
+        <div class="arch-layer-name text-p">Graph Store</div>
+        <div class="arch-layer-desc">Semantic triples with bidirectional indexing. Relationship traversal and entity linking.</div>
+        <div class="arch-prefix">Prefix: 0x00 – 0x01</div>
+      </div>
+      <div class="arch-layer">
+        <div class="arch-layer-icon">🧠</div>
+        <div class="arch-layer-name text-g">Vector Store</div>
+        <div class="arch-layer-desc">HNSW approximate nearest-neighbor index. Cosine-distance similarity search with no external service.</div>
+        <div class="arch-prefix">Prefix: 0x02 – 0x04</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line" style="margin:0;"></div>
+
+<!-- ── FEATURE HIGHLIGHTS ────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Why FusionDB</div>
+    <h2 class="section-title">Built Different</h2>
+
+    <div class="grid-3 mt-4">
+      <div class="card">
+        <div class="card-icon icon-c">🔐</div>
+        <div class="card-title">Encryption by Default</div>
+        <p class="card-text">All KV payloads are encrypted with AES-256-GCM before touching disk. Fresh random nonce per write. PII graph edges are masked with HMAC-SHA256 — the raw value never enters the index.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-g">⚛️</div>
+        <div class="card-title">True Atomic Writes</div>
+        <p class="card-text">A single <code>Fuse()</code> call commits KV, Graph, and Vector in one serializable transaction. Partial writes are structurally impossible — if anything fails, everything rolls back.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-p">🔍</div>
+        <div class="card-title">Hybrid Query Engine</div>
+        <p class="card-text">Bayesian scoring engine ranks results by salience × recency × reliability − decay. Query by ID, by vector similarity, or traverse the graph — all from the same interface.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-c">🌐</div>
+        <div class="card-title">Unified Fusion Language</div>
+        <p class="card-text">UFL is a JSON-based declarative interface for all reads and writes. One manifest format for fusing entities, querying by vector, and traversing the 4-degree ontology.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-g">📊</div>
+        <div class="card-title">4-Degree Ontology</div>
+        <p class="card-text">Entity relationships organized by gravity: Primary → Secondary (PII) → Tertiary (assets) → Quaternary (loose refs). HydrateEntity() resolves all degrees and decrypts PII.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-p">🚀</div>
+        <div class="card-title">Zero External Services</div>
+        <p class="card-text">No Kubernetes, no vector service, no graph database cluster. FusionDB ships as a single self-contained binary. Deploy it anywhere Go runs — from a Raspberry Pi to a data center.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-line" style="margin:0;"></div>
+
+<!-- ── CODE EXAMPLE ──────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Quick Start</div>
+    <h2 class="section-title">Up in Two Commands</h2>
+    <div class="grid-2 mt-4" style="align-items:start;">
+      <div>
+        <p style="font-size:1rem;color:var(--text-secondary);line-height:1.8;margin-bottom:1.5rem;">
+          Set your encryption key, point FusionDB at a directory, and start fusing entities across all three storage layers — that's it. No schema migrations, no service discovery.
+        </p>
+        <div class="tag-row">
+          <span class="tag tag-c">Go Library</span>
+          <span class="tag tag-g">CLI Tool</span>
+          <span class="tag tag-p">HTTP API</span>
+        </div>
+        <div class="tag-row">
+          <span class="tag tag-c">Windows</span>
+          <span class="tag tag-g">Linux</span>
+        </div>
+        <div class="mt-4">
+          <a href="{{ .Site.Params.githubRepo }}/blob/main/docs/QUICKSTART.md" class="btn btn-outline" target="_blank" rel="noopener">Full Quick Start Guide →</a>
+        </div>
+      </div>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="t-dot t-red"></span>
+          <span class="t-dot t-yellow"></span>
+          <span class="t-dot t-green-d"></span>
+          <span class="terminal-label">fusiondb — cli</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-comment"># 1. Set your 32-byte encryption key</span></div>
+          <div><span class="t-prompt">$</span> <span class="t-cmd">export FUSIONDB_SECRET=$(openssl rand -hex 32)</span></div>
+          <div>&nbsp;</div>
+          <div><span class="t-comment"># 2. Fuse an entity across all three layers</span></div>
+          <div><span class="t-prompt">$</span> <span class="t-cmd">fusiondb -db=./data ufl manifest.json</span></div>
+          <div><span class="t-out">✓ Fused entity: person:jane_smith</span></div>
+          <div><span class="t-out">  KV ✓  Graph ✓  Vector ✓</span></div>
+          <div>&nbsp;</div>
+          <div><span class="t-comment"># 3. Query the graph</span></div>
+          <div><span class="t-prompt">$</span> <span class="t-cmd">fusiondb -db=./data query person:jane_smith</span></div>
+          <div><span class="t-out">Found 2 relations:</span></div>
+          <div><span class="t-out">  (jane_smith) --[has_email]--> (j***@***.com)</span></div>
+          <div><span class="t-out">  (jane_smith) --[owns_vehicle]--> (vin:XYZ789)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BAND ───────────────────────────────────────────── -->
+<section class="cta-band">
+  <div class="container">
+    <div class="section-label" style="justify-content:center;">Licensing</div>
+    <h2>Own Your Data Infrastructure</h2>
+    <p>One license. One binary. No subscriptions, no cloud lock-in, no per-seat pricing. FusionDB runs wherever you need it.</p>
+    <div class="cta-actions">
+      <a href="/pricing/" class="btn btn-primary btn-lg">Purchase License — $250</a>
+      <a href="/docs/" class="btn btn-outline btn-lg">Read the Docs</a>
+    </div>
+  </div>
+</section>
+
+{{ end }}
